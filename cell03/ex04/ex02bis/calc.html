@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>It's over 9000 - jQuery Edition</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { display: flex; justify-content: center; padding-top: 50px; font-family: sans-serif; }
+        .calc-container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; background: #fdfdfd; }
+        input, select { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="calc-container">
+        <input type="text" id="leftNum">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" id="rightNum">
+        <input type="submit" value="Try me!" id="submitBtn">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#submitBtn').click(function() {
+                const leftVal = $('#leftNum').val();
+                const rightVal = $('#rightNum').val();
+                const op = $('#operator').val();
+                
+                if (!/^\d+$/.test(leftVal) || !/^\d+$/.test(rightVal)) {
+                    alert('Error :(');
+                    return;
+                }
+
+                const n1 = parseInt(leftVal);
+                const n2 = parseInt(rightVal);
+                let result;
+
+                if ((op === '/' || op === '%') && n2 === 0) {
+                    const msg = "It's over 9000!";
+                    alert(msg);
+                    console.log(msg);
+                    return;
+                }
+
+                if (op === '+') result = n1 + n2;
+                else if (op === '-') result = n1 - n2;
+                else if (op === '*') result = n1 * n2;
+                else if (op === '/') result = n1 / n2;
+                else if (op === '%') result = n1 % n2;
+
+                alert(result);
+                console.log(result);
+            });
+
+            setInterval(function() {
+                alert('Please, use me...');
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

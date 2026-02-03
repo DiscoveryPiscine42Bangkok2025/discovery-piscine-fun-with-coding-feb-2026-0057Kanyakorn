@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex00bis - jQuery Background</title>
+    <link rel="stylesheet" href="backgroound.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <button id="colorButton">Click me!</button>
+
+    <script>
+        $(document).ready(function() {
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            $('#colorButton').click(function() {
+                $('body').css('background-color', getRandomColor());
+            });
+        });
+    </script>
+</body>
+</html>
